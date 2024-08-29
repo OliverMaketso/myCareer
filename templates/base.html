@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='styles.css') }}"/>
-    <title>MyCareer</title>
+    {% block  head %}{% endblock %}
 </head>
 <body>
-    <h1>Welcome to my apps Home page</h1>
-    <p> hey heyy hey hey </p>
+    {%block body %}{% endblock %}
 </body>
 </html>

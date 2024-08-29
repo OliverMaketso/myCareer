@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block  head %}
+<title> MyCareer </title>
+{% endblock %}
+
+{%block body %}
+
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"></div>
+            <ul class="nav-links">
+                <!-- <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li> -->
+                <li> Mycareer </li>
+
+            </ul>
+            <a href="/signup" class="cta-button">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to MyCareer</h1>
+            <p>
+                Where finding the path of your career is made easy. You will find
+                career roadmaps and recommended universities or online courses to 
+                take that will bring you closer to your dream career.
+                Sign up to get personalized roadmaps that align with your 
+                edcational background and career preference.
+            </p>
+            <a href="/signup" class="primary-button">Get Started</a>
+        </div>
+        <div class="hero-image">
+            <img src="hero-image.jpg" alt="Hero Image">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <h2>Features</h2>
+        <div class="features-container">
+            <div class="feature">
+                <img src="feature1-icon.png" alt="Feature 1">
+                <a href="/careers"><h3>Careers</h3></a>
+                <p>Description of the first feature that highlights its benefits.</p>
+            </div>
+            <div class="feature">
+                <img src="feature2-icon.png" alt="Feature 2">
+                <a href="/freecourses"><h3>Free courses</h3></a>
+                <p>Description of the second feature that explains how it solves a problem.</p>
+            </div>
+            <div class="feature">
+                <img src="feature3-icon.png" alt="Feature 3">
+                <a href="/recommanded"><h3>Recommended</h3></a>
+                <p>Description of the third feature that makes your product unique.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>About Us</h2>
+        <p>At Mycareer we are commited to help people find their dream career by providing users with resourses to reach their dream career</p>
+    </section>
+
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>What Our Users Say</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"This product has changed the way we do business. Highly recommended!"</p>
+                <h4>- John Doe</h4>
+            </div>
+            <div class="testimonial">
+                <p>"Excellent customer service and a fantastic product!"</p>
+                <h4>- Jane Smith</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <form action="submit-form.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit" class="primary-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 MyCareer. All rights reserved.</p>
+        <ul class="social-links">
+            <li><a href="https://facebook.com">Facebook</a></li>
+            <li><a href="https://twitter.com">Twitter</a></li>
+            <li><a href="https://linkedin.com">LinkedIn</a></li>
+        </ul>
+    </footer>
+
+{% endblock %}
