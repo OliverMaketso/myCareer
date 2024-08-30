@@ -66,6 +66,20 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/careers', methods=['GET'])
+def careers():
+    return render_template('careers.html')
+
+
+@app.route('/freecourses', methods=['GET'])
+def freecourses():
+    return render_template('freecourses.html')
+
+
+@app.route('/recommanded', methods=['GET'])
+def recommanded():
+    return render_template('recommanded.html')
+
 if __name__ in "__main__":
     with app.app_context():
         database.create_all()
