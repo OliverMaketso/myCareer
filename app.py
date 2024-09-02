@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import login_user
+import re
 
 app = Flask(__name__)
 
@@ -14,6 +15,22 @@ database = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
+#REGEX to validate an email
+email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+
+# password complexity requirements to be met by each password
+def validate_password(password):
+    if len(password) < 8:
+        return False, "password must be at least 8 characters long!"
+    if not re.search(r"[A-Z]", password):
+        return False, "password must contain atleast one uppercase!"
+    if not re.search(r"[a-z]", password):
+        return False, "password must contain atleast one lowercase!"
+    if not re.search(r"[0-9]", password):
+        return False, "password must contain atleast one number!"
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        return False, "Password must contain atleast one special symbol!"
+    return True, ""
 
 # data class - rows of data Table
 class user(database.Model):
@@ -22,8 +39,8 @@ class user(database.Model):
     user_id = database.Column(database.Integer, primary_key=True)
     name = database.Column(database.String(50), nullable=False)
     surname = database.Column(database.String(50), nullable=False)
-    email = database.Column(database.String(255), nullable=False)
-    password = database.Column(database.String(50), nullable=False)
+    email = database.Column(database.String(255), nullable=False, unique=True)# email uniqueness prevents duplicate accounts
+    password = database.Column(database.String(255), nullable=False) #increase the length to accomodate longer hashes
     created_at = database.Column(database.DateTime, default=datetime.utcnow)
 
     def __repr__(self) -> str:
@@ -76,9 +93,9 @@ def freecourses():
     return render_template('freecourses.html')
 
 
-@app.route('/recommanded', methods=['GET'])
+@app.route('/recommended', methods=['GET']) # corrected recommanded to recommended
 def recommanded():
-    return render_template('recommanded.html')
+    return render_template('recommended.html') # corrected recommanded to recommended
 
 if __name__ in "__main__":
     with app.app_context():
