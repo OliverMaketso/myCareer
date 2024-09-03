@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: ghostwhite;
+    background-color: gainsboro;
 }
 
 header {
@@ -52,7 +52,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
