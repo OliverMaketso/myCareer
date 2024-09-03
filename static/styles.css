@@ -16,6 +16,16 @@ header {
     z-index: 1000;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-top: 80px;  /* Space below the fixed header */
+    padding: 20px;     /* Padding around the content */
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -73,6 +83,28 @@ header {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.list {
+    list-style-type: none;
+    background-color: #f2f2f2;  /* Light grey background */
+    border-radius: 5px;     /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    overflow: hidden;
+}
+
+.list li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd; /* Light border between items */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.list li:hover {
+    background-color: #e0e0e0; /* Slightly darker grey */
+}
+
+.list li:last-child {
+    border-bottom: none;
 }
 
 footer {
