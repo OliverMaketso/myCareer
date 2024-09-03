@@ -10,4 +10,13 @@
     <h1>Careers</h1>
 </a>
 </header>
+
+<body>
+<h2>Available Careers</h2>
+<ul>
+    {% for career in careers %}
+        <li><a href="{{ url_for('career_detail', career_id=career.id) }}">{{ career.title }}</a></li>
+    {% endfor %}
+</ul>
+</body>
 {%endblock%}

@@ -9,7 +9,8 @@ from flask_login import login_user
 app = Flask(__name__)
 
 # app configuration for sqlalchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mycareerdatabse.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mycareerdatabase.db'
+app.config['SECRET_KEY'] = 'Tshepiso'
 database = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
@@ -23,12 +24,35 @@ class user(database.Model):
     name = database.Column(database.String(50), nullable=False)
     surname = database.Column(database.String(50), nullable=False)
     email = database.Column(database.String(255), nullable=False)
-    password = database.Column(database.String(50), nullable=False)
+    password = database.Column(database.String(1000), nullable=False)
+    #created_at = database.Column(database.DateTime, default=datetime.utcnow)
+
+    #def __repr__(self) -> str:
+    #    return f"User {self.id}"
+
+    def to_dict(self):
+        return {
+            'user_id': self.user_id,
+            'name': self.name,
+            'surname': self.surname,
+            'email': self.emal,
+            'password': self.password
+        }
+
+
+class Career(database.Model):
+    id = database.Column(database.Integer, primary_key=True)
+    title = database.Column(database.String(100), nullable=False)
+    description = database.Column(database.Text, nullable=False)
+    requirements = database.Column(database.Text, nullable=False)
     created_at = database.Column(database.DateTime, default=datetime.utcnow)
 
-    def __repr__(self) -> str:
-        return f"User {self.id}"
+    def __repr__(self):
+        return f"<Career {self.title}>"
 
+# Create the database and table
+with app.app_context():
+    database.create_all()
 
 # Home page
 @app.route("/")
@@ -68,7 +92,15 @@ def login():
 
 @app.route('/careers', methods=['GET'])
 def careers():
-    return render_template('careers.html')
+    #careers = Career.query.all()
+    return render_template('careers.html', careers=Career.query.all())
+
+
+# career details page
+@app.route('/careers/<int:career_id>')
+def career_detail(career_id):
+    career = Career.query.get_or_404(career_id)
+    return render_template('career_detail.html', career=career)
 
 
 @app.route('/freecourses', methods=['GET'])
