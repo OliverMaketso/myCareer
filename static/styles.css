@@ -67,7 +67,7 @@ main {
 }
 
 .features-section, .about-section, .pricing-section, .testimonials-section, .contact-section {
-    padding: 4em 2em;
+    padding:  4em;
     text-align: center;
 }
 
