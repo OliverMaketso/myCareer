@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-
 {% block body %}
 <header class="navbartext">
     <h2>{{ career.title }}</h2>
 </header>
-<body class="hero">
-    <p><strong>Description:</strong> {{ career.description }}</p>
-    <p><strong>Requirements:</strong> {{ career.requirements }}</p>
-    <a href="{{ url_for('careers') }}">Back to Careers</a>
+<body>
+<div class="hero">
+    <div class="card-container">
+        <div class="card">
+            <h2 class="class-title">Discription</h2>
+            <p><strong></strong> {{ career.description }}</p>
+        </div>
+        <div class="card">
+            <h2 class="class-title">Requirements</h2>
+            <p><strong></strong> {{ career.requirements }}</p>
+        </div>
+    </div>
+</div>
+
 </body>
-{% endblock %}
+{% endblock %}  
