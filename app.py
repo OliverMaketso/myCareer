@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import login_user
 import re
+import requests 
 
 app = Flask(__name__)
 
@@ -63,8 +64,13 @@ class Career(database.Model):
     description = database.Column(database.Text, nullable=False)
     requirements = database.Column(database.Text, nullable=False)
 
- 
-
+class Course(database.Model):
+    id = database.Column(database.Integer, primary_key=True)
+    title = database.Column(database.String(100), nullable=False)
+    course_provider = database.Column(database.String(100), nullable=False)
+    description = database.Column(database.Text, nullable=False)
+    time_to_complete = database.Column(database.Text, nullable=False)
+    link = database.Column(database.Text, nullable=False)
 
 # Create the database and table
 with app.app_context():
@@ -111,6 +117,16 @@ def careers():
     #careers = Career.query.all()
     return render_template('careers.html', careers=Career.query.all())
 
+@app.route("/career_list")
+def career_list():
+    API_KEY = '91e7bcca5f07d95dbf540d18d41e1033'
+    API_ID = '501f4066'
+    URL = f"https://api.adzuna.com/v1/api/jobs/us/search/1?app_id={API_ID}&app_key={API_KEY}"
+    response = requests.get(URL)
+    job_data = response.json()['results']
+    
+    return render_template('career_list.html', jobs=job_data)
+
 
 # career details page
 @app.route('/careers/<int:career_id>')
@@ -121,12 +137,12 @@ def career_detail(career_id):
 
 @app.route('/freecourses', methods=['GET'])
 def freecourses():
-    return render_template('freecourses.html')
+    return render_template('freecourses.html', courses=Course.query.all())
 
 
-@app.route('/recommended', methods=['GET']) # corrected recommanded to recommended
-def recommanded():
-    return render_template('recommended.html') # corrected recommanded to recommended
+#@app.route('/recommended', methods=['GET']) # corrected recommanded to recommended
+#def recommanded():
+#    return render_template('recommended.html') # corrected recommanded to recommended
 
 if __name__ in "__main__":
     with app.app_context():
