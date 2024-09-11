@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<header class="navbartext">
+    <h2>{{ course.title }}</h2>
+</header>
+<body>
+<div class="hero">
+    <div class="card-container">
+        <div class="card">
+            <h2 class="card-title">Discription</h2>
+            <p><strong></strong> {{ course.description }}</p>
+        </div>
+        <div class="card">
+            <h2 class="class-title">Requirements</h2>
+            <p><strong></strong> {{ course.requirements }}</p>
+        </div>
+    </div>
+</div>
+
+</body>
+{% endblock %}  

@@ -144,7 +144,7 @@ def career_detail(career_id):
 @app.route('/courses/<int:course_id>')
 def course_detail(course_id):
     course = Course.query.get_or_404(course_id)
-    return render_template('career_detail.html', career=career)
+    return render_template('course_detail.html', course=course)
 
 #@app.route('/recommended', methods=['GET']) # corrected recommanded to recommended
 #def recommanded():

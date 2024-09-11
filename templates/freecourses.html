@@ -11,6 +11,11 @@
 
 <main>
     <h2>Available Courses</h2>
+    <ul class="list">
+        {% for course in courses %}
+            <li><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.title }}</a></li>
+        {% endfor %}
+    </ul>
 </main>
 
 {%endblock%}
