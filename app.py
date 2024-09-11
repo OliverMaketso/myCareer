@@ -117,6 +117,12 @@ def careers():
     #careers = Career.query.all()
     return render_template('careers.html', careers=Career.query.all())
 
+
+@app.route('/freecourses', methods=['GET'])
+def freecourses():
+    return render_template('freecourses.html', courses=Course.query.all())
+
+
 @app.route("/career_list")
 def career_list():
     API_KEY = '91e7bcca5f07d95dbf540d18d41e1033'
@@ -135,10 +141,10 @@ def career_detail(career_id):
     return render_template('career_detail.html', career=career)
 
 
-@app.route('/freecourses', methods=['GET'])
-def freecourses():
-    return render_template('freecourses.html', courses=Course.query.all())
-
+@app.route('/courses/<int:course_id>')
+def course_detail(course_id):
+    course = Course.query.get_or_404(course_id)
+    return render_template('career_detail.html', career=career)
 
 #@app.route('/recommended', methods=['GET']) # corrected recommanded to recommended
 #def recommanded():
